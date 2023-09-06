@@ -1,4 +1,4 @@
-FROM python:3.9 as requirements-stage
+FROM python:3.11.3 as requirements-stage
 WORKDIR /tmp
 RUN pip install poetry
 COPY ./pyproject.toml ./poetry.lock* /tmp/
