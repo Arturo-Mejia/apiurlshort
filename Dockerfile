@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Instalar las dependencias de Python
-RUN pip install Flask pyodbc gunicorn
+RUN pip install Flask pyodbc gunicorn uvicorn
 
 # Copiar el código fuente de la aplicación al directorio de trabajo
 COPY . .
