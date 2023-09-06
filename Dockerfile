@@ -2,10 +2,7 @@
 FROM ubuntu:20.04
 
 # Actualiza el sistema e instala las herramientas necesarias
-RUN apt-get update -y && \
-    apt-get install -y unixodbc unixodbc-dev && \
-    rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y unixodbc unixodbc-dev
 # Utilizar una imagen base de Python 3.11.3
 FROM python:3.11.3
 
