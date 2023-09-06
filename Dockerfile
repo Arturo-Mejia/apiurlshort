@@ -1,3 +1,9 @@
+# Utiliza una imagen base de Debian o Ubuntu
+FROM debian:bullseye-slim
+
+# Actualiza la lista de paquetes e instala el controlador ODBC
+RUN apt-get update && apt-get install -y unixodbc unixodbc-dev
+
 # Utilizar una imagen base de Python 3.11.3
 FROM python:3.11.3
 
