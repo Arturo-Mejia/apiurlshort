@@ -1,13 +1,16 @@
-FROM python:3.11.3 as requirements-stage
-WORKDIR /tmp
-RUN pip install poetry
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-
+# Utilizar una imagen base de Python 3.11.3
 FROM python:3.11.3
-WORKDIR /code
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-COPY ./app /code/app
+
+# Establecer el directorio de trabajo en /app
+WORKDIR /app
+
+# Copiar el archivo de requerimientos al directorio de trabajo
+COPY requirements.txt .
+
+# Instalar las dependencias de Python
+RUN pip install Flask pyodbc gunicorn
+
+# Copiar el código fuente de la aplicación al directorio de trabajo
+COPY . .
 
 CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
