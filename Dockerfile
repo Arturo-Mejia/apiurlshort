@@ -2,10 +2,7 @@
 FROM python:3.11.3
 
 # Instala las dependencias del sistema
-RUN apt-get update && \
-    apt-get install -y unixodbc-dev && \
-    apt-get clean
-
+RUN sudo apt-get install unixodbc unixodbc-dev
 # Establecer el directorio de trabajo en /app
 WORKDIR /app
 
