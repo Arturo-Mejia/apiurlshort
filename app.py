@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-import pypyodbc as pyodbc, json, random, string, os
+import pypyodbc, json, random, string, os
 
 app = Flask(__name__)
 port = int(os.environ.get("PORT", 5000))
@@ -8,11 +8,11 @@ server = 'sql.bsite.net\MSSQL2016'
 database = 'amhapi_urls'
 username = 'amhapi_urls'
 password = 'amhurls-123'
-
+connstring = 'DRIVER={SQL Server Native Client 11.0};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password
 @app.route('/<id>')
 def red(id):
      # Establecer la conexión a SQL Server
-    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    conn = pypyodbc.connect(connstring)
     # Crear un cursor para ejecutar consultas
     cursor = conn.cursor()
     # Ejecutar la consulta SELECT
@@ -34,7 +34,7 @@ def genurl():
     data = request.get_json()
     urlj = data["url"]
     # Establecer la conexión a SQL Server
-    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    conn = pypyodbc.connect(connstring)
     # Crear un cursor para ejecutar consultas
     cursor = conn.cursor()
     # Ejecutar la consulta SELECT
@@ -74,13 +74,13 @@ def generaridurl(id):
 
 def regurlg(urlo,urlg):
     try:
-        conn = pyodbc.connect('DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+        conn = pypyodbc.connect(connstring)
         # Crear un cursor para ejecutar consultas
         cursor = conn.cursor()
         cursor.execute("insert into urls(urlo,urlg) values('"+urlo+"','"+urlg+"');")
          # Confirma la transacción
         conn.commit()
-    except pyodbc.Error as e:
+    except pypyodbc.Error as e:
         # Si se produce un error, imprime el mensaje de error
         print(f"Error en la consulta SQL: {str(e)}")
 
