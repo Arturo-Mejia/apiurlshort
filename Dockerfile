@@ -20,4 +20,4 @@ RUN pip install uvicorn
 # Copiar el código fuente de la aplicación al directorio de trabajo
 COPY . .
 
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
