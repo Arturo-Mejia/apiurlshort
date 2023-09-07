@@ -15,6 +15,8 @@ COPY requirements.txt .
 # Instala las bibliotecas requeridas desde requirements.txt
 RUN pip install -r requirements.txt
 
+RUN PIP install uvicorn
+
 # Copiar el código fuente de la aplicación al directorio de trabajo
 COPY . .
 
