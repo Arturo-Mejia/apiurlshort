@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-import pyodbc, json, random, string, os
+import pypyodbc as pyodbc, json, random, string, os
 
 app = Flask(__name__)
 port = int(os.environ.get("PORT", 5000))
