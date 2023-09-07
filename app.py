@@ -13,4 +13,4 @@ def index():
     return render_template('notfound.html')
 
 if __name__ == '__main__':
-     app.run(port=port)
+     app.run(port=8080)
