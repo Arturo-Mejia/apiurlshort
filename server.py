@@ -8,7 +8,7 @@ server = 'sql.bsite.net\MSSQL2016'
 database = 'amhapi_urls'
 username = 'amhapi_urls'
 password = 'amhurls-123'
-connstring = 'DRIVER={SQL Server Native Client 11.0};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password
+connstring = 'DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password
 @app.route('/<id>')
 def red(id):
      # Establecer la conexión a SQL Server
