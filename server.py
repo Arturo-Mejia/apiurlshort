@@ -12,7 +12,7 @@ connstring = 'DRIVER={SQL Server};SERVER=' + server + ';DATABASE=' + database + 
 @app.route('/<id>')
 def red(id):
      # Establecer la conexión a SQL Server
-    conn = pypyodbc.connect(connstring)
+    conn = pypyodbc.connect(driver='{SQL Server}', server=server, database=database, uid=username, pwd=password)
     # Crear un cursor para ejecutar consultas
     cursor = conn.cursor()
     # Ejecutar la consulta SELECT
